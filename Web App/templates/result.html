@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detection Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #e0f7fa; /* Light cyan background color for the entire page */
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #004d40; /* Dark cyan color for the header */
+            padding: 20px;
+            border-bottom: 3px solid #004d40;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            background-color: #b2dfdb; /* Light cyan background for the header */
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        .image-container {
+            width: 45%;
+            text-align: center;
+            margin: 10px;
+            background: #ffffff; /* White background for image containers */
+            border-radius: 12px; /* Slightly more rounded corners */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            padding: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .image-container:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 3px solid #4db6ac; /* Darker cyan border for images */
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
+        }
+        img:hover {
+            transform: scale(1.07);
+        }
+        .cropped-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        .cropped-item {
+            width: 30%;
+            text-align: center;
+            margin: 10px 0;
+            background: #ffffff; /* White background for cropped images */
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            padding: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .cropped-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+        }
+        h2 {
+            color: #00796b; /* Teal color for subheadings */
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+        strong {
+            color: #004d40; /* Dark cyan color for strong text */
+        }
+    </style>
+</head>
+<body>
+    <h1>Detection Results</h1>
+
+    <div class="container">
+        <div class="image-container">
+            <h2>Original Image</h2>
+            <img src="{{ original_image }}" alt="Original Image">
+        </div>
+        <div class="image-container">
+            <h2>Detected Image</h2>
+            <img src="{{ result_image }}" alt="Detected Image">
+        </div>
+    </div>
+
+    <h2>Cropped Enhanced Results</h2>
+    <div class="cropped-container">
+        {% for cropped_image in cropped_images %}
+        <div class="cropped-item">
+            <img src="{{ cropped_image }}" alt="Cropped Image">
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Extracted Text</h2>
+    <p><strong>Units:</strong>{{units}}</p>
+    <p><strong>Box No:</strong>{{boxno}}</p>
+</body>
+</html>
